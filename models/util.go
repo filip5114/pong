@@ -9,5 +9,6 @@ type GameState byte
 const (
 	StartState GameState = iota
 	PlayState
+	InterState
 	GameOverState
 )

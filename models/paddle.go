@@ -14,14 +14,16 @@ const (
 
 type Paddle struct {
 	Position
-	H, W    float32
-	Yv      float32
-	Color   color.Color
-	Img     *ebiten.Image
-	pressed keysPressed
-	Up      ebiten.Key
-	Down    ebiten.Key
-	Score   int
+	H, W      float32
+	Yv        float32
+	Color     color.Color
+	Img       *ebiten.Image
+	pressed   keysPressed
+	Up        ebiten.Key
+	Down      ebiten.Key
+	Score     int
+	LastPoint bool
+	Winner    bool
 }
 
 type keysPressed struct {
@@ -29,7 +31,7 @@ type keysPressed struct {
 	down bool
 }
 
-func (p *Paddle) Update() {
+func (p *Paddle) Update(w, h int) {
 	if inpututil.IsKeyJustPressed(p.Up) {
 		p.pressed.down = false
 		p.pressed.up = true
@@ -51,8 +53,8 @@ func (p *Paddle) Update() {
 
 	if p.Y < 0 {
 		p.Y = 0
-	} else if p.Y+p.H > 480.0 {
-		p.Y = 480.0 - p.H
+	} else if p.Y+p.H > float32(h) {
+		p.Y = float32(h) - p.H
 	}
 }
 
