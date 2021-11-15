@@ -18,7 +18,7 @@ const (
 	initPlayer1PositionY = float32((screenHeight / 2) - (models.InitPaddleHeight / 2))
 	initPlayer2PositionX = float32((screenWidth / 8) * 7)
 	initPlayer2PositionY = float32((screenHeight / 2) - (models.InitPaddleHeight / 2))
-	initBallVelocity     = 4.0
+	initBallVelocity     = 5.0
 	initBallStep         = 0.2
 	initMaxScore         = 2
 )
@@ -45,9 +45,7 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
 func (g *Game) Update() error {
 	w, _ := g.Layout(ebiten.WindowSize())
 	g.player1.X = float32(w / 8)
-	//g.player1.Y = float32(h/2 - models.InitPaddleHeight/2)
 	g.player2.X = float32((w / 8) * 7)
-	//g.player2.Y = float32(h/2 - models.InitPaddleHeight/2)
 	switch g.state {
 	case models.StartState:
 		if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
@@ -159,7 +157,6 @@ func (g *Game) init() {
 
 func main() {
 	g := &Game{}
-	//ebiten.SetWindowSizeLimits(screenWidth, screenHeight, -1, -1)
 	ebiten.SetWindowTitle("Pong")
 	ebiten.SetWindowResizable(true)
 	g.init()
