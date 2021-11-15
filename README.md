@@ -10,7 +10,9 @@ Features:
 
 # Run
 Clone the repo and run commands:
+
 `go build`
+
 `./pong`
 
 # Settings
